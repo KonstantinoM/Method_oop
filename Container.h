@@ -12,6 +12,7 @@ class cont
 public:
 	void Incont(ifstream &f);
 	void Outcont(ofstream &f);
+	void OutSphere(ofstream &f);
 	void Clear();
 	cont();    
     ~cont() { delete sh; }

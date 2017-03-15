@@ -13,3 +13,9 @@ void Sphere::Out(ofstream &f)
 {
 	f << "It's sphere: r = " << r; 
 }
+
+void Sphere::OutOnlySphere(ofstream &f)
+{
+	Out(f);
+	f << ", p = " << p << endl; 
+}

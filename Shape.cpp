@@ -35,3 +35,8 @@ void Shape::OutShape(ofstream &f)
 	Out(f);
 	f << ", p = " << p <<  endl;
 }
+
+void Shape::OutOnlySphere(ofstream &f)
+{
+	f << endl; 
+}

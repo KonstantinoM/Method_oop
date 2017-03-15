@@ -1,8 +1,16 @@
 Total number = 7
 It's sphere: r = 5, p = 6
-It's box: a = 2, b = 3, c = 4, p = 5
-It's sphere: r = 1, p = 9
-It's box: a = 2, b = 3, c = 5, p = 9.515
+It's box: a = 2, b = 3, c = 4, p = 5.198
+It's sphere: r = 1, p = 9.265
+It's box: a = 2, b = 3, c = 5, p = 9
 It's box: a = 5, b = 6, c = 5, p = 8
 It's sphere: r = 5, p = 8
-It's box: a = 5, b = 7, c = 2, p = 1
+It's box: a = 5, b = 7, c = 2, p = 1.65
+Only spheres:
+1. It's sphere: r = 5, p = 6
+2. 
+3. It's sphere: r = 1, p = 9.265
+4. 
+5. 
+6. It's sphere: r = 5, p = 8
+7. 
