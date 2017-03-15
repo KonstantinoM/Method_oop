@@ -15,6 +15,7 @@ public:
     virtual void Out(ofstream &f) = 0; 
 	virtual float Volume() = 0;
 	void OutShape(ofstream &f);
+	bool Compare(Shape *other);
 };
 
 #endif

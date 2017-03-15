@@ -13,6 +13,7 @@ public:
 	void Incont(ifstream &f);
 	void Outcont(ofstream &f);
 	void Clear();
+	void Sort();
 	cont();    
     ~cont() { delete sh; }
 };
