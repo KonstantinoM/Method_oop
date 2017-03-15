@@ -3,13 +3,13 @@
 #include "Shape.h"
 using namespace std;
 
-class Box:public Shape
+class Tetrahedron:public Shape
 {
 private:
-	int a, b, c;
+	int a;
 public:
 	void In(ifstream &f);
 	void Out(ofstream &f);
-	Box() {}
+	Tetrahedron() {}
 };
 

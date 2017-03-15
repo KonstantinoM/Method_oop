@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Box.h"
 #include "Sphere.h"
+#include "Tetrahedron.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -20,6 +21,11 @@ Shape* Shape::InShape(ifstream &f)
 		case 1: //Это параллелепипед
 			{
 				s = new Box;
+				break;
+			}
+		case 2: //Это тетраэдр
+			{
+				s = new Tetrahedron;
 				break;
 			}
 		default:

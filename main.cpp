@@ -25,6 +25,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	ofstream f2(argv[2]);
 	l.Outcont(f2);
 	l.Clear();
+	//Outcont(l, f2);
 	return 0;
 }
 
