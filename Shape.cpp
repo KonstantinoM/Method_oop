@@ -40,5 +40,10 @@ Shape* Shape::InShape(ifstream &f)
 void Shape::OutShape(ofstream &f)
 {
 	Out(f);
-	f << ", p = " << p << ", t = " << t << endl;
+	f << ", p = " << p << ", t = " << t;
+}
+
+void Shape::OutOnlySphere(ofstream &f)
+{
+	f << endl; 
 }

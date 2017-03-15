@@ -15,3 +15,8 @@ void Box::Out(ofstream &f)
 {
 	f << "It's box: a = " << a << ", b = " << b << ", c = " << c; 
 }
+
+float Box::Volume()
+{
+	return (a*b*c);
+}
