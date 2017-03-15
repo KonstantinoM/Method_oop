@@ -33,5 +33,5 @@ Shape* Shape::InShape(ifstream &f)
 void Shape::OutShape(ofstream &f)
 {
 	Out(f);
-	f << ", p = " << p <<  endl;
+	f << ", p = " << p;
 }

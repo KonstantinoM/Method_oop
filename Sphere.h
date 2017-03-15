@@ -1,4 +1,3 @@
-//#include "Enu.h"
 #include <iostream>
 #include <fstream>
 #include "Shape.h"
@@ -11,6 +10,7 @@ private:
 public:
 	void In(ifstream &f);
 	void Out(ofstream &f);
+	float Volume();
 	Sphere() {}
 };
 

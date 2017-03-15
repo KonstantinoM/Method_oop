@@ -15,6 +15,7 @@ cont::cont()
 void cont::Incont(ifstream &f)
 {
 	f >> n; 
+
 	sh=Shape::InShape(f);
 	for (int i = 0; i < n-1; i++)
 	{
@@ -36,6 +37,7 @@ void cont::Outcont(ofstream &f)
 	for (int i = 0; i < N; i++)
 	{
 		l->sh->OutShape(f);
+		f << ", V = " << l->sh->Volume() << endl;
 		l = l->next;
 	}
 }
