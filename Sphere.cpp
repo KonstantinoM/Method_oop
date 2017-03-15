@@ -21,3 +21,9 @@ float Sphere::Volume()
 {
 	return (float(4)/float(3)*M_PI*pow(r, 3.0));
 }
+
+void Sphere::OutOnlySphere(ofstream &f)
+{
+	Out(f);
+	f << ", p = " << p << endl;
+}

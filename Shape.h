@@ -7,13 +7,13 @@ using namespace std;
 
 class Shape
 {
-private:
-	float p;
 public:
+	float p;
 	static Shape* InShape(ifstream &f);
 	virtual void In(ifstream &f) = 0; 
-    virtual void Out(ofstream &f) = 0; 
+	virtual void Out(ofstream &f) = 0; 
 	virtual float Volume() = 0;
+	virtual void OutOnlySphere(ofstream &f);
 	void OutShape(ofstream &f);
 	bool Compare(Shape *other);
 };

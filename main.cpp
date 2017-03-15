@@ -23,6 +23,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	l.Incont (f1);
 
 	ofstream f2(argv[2]);
+	l.OutSphere(f2);
+	f2 << '\n';
 	l.Outcont(f2);
 	l.Clear();
 	return 0;

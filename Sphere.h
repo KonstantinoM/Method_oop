@@ -11,6 +11,7 @@ public:
 	void In(ifstream &f);
 	void Out(ofstream &f);
 	float Volume();
+	void OutOnlySphere(ofstream &f);
 	Sphere() {}
 };
 

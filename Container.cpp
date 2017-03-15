@@ -42,6 +42,21 @@ void cont::Outcont(ofstream &f)
 	}
 }
 
+void cont::OutSphere(ofstream &f)
+{
+	int N = n;
+	f << "Only spheres:" <<  endl;
+	cont* l = this;
+	
+	for (int i = 0; i < N; i++)
+	{
+		f << i+1 << ". ";
+		l->sh->OutOnlySphere(f);
+		//f << endl;
+		l = l->next;
+	}
+}
+
 void cont::Clear()
 {
 	cont* l = this->next;
