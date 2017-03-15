@@ -1,5 +1,3 @@
-//#include "Sphere.h"
-//#include "Box.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -11,6 +9,7 @@ class Shape
 {
 private:
 	float p;
+	int t;
 public:
 	static Shape* InShape(ifstream &f);
 	virtual void In(ifstream &f) = 0; 

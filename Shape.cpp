@@ -27,11 +27,12 @@ Shape* Shape::InShape(ifstream &f)
 	}
 	s->In(f);
 	f >> s->p;
+	f >> s->t;
 	return s;
 }
 
 void Shape::OutShape(ofstream &f)
 {
 	Out(f);
-	f << ", p = " << p <<  endl;
+	f << ", p = " << p << ", t = " << t << endl;
 }
