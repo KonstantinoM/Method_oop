@@ -9,6 +9,7 @@ class Shape
 {
 private:
 	float p;
+	int t;
 public:
 	static Shape* InShape(ifstream &f);
 	virtual void In(ifstream &f) = 0; 
