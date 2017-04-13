@@ -25,5 +25,5 @@ float Sphere::Volume()
 void Sphere::OutOnlySphere(ofstream &f)
 {
 	Out(f);
-	f << ", p = " << p << ", t = " << t << endl;
+	f << ", p = " << p << ", t = " << t << ", V = " << Volume() << endl;
 }

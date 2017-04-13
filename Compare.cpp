@@ -4,5 +4,5 @@
 
 bool Shape::Compare(Shape *other)
 {
-	return Volume() > other->Volume();
+	return (Volume() > other->Volume());
 }

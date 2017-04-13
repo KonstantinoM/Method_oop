@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
-#include "windows.h"
 #include "Container.h"
 using namespace std;
 
@@ -19,15 +18,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	ifstream f1(argv[1]);
 
-	cont l;
-	l.Incont (f1);
+	cont list;
+	list.Incont (f1);
 
 	ofstream f2(argv[2]);
-	l.OutSphere(f2);
+	list.Outcont(f2);
 	f2 << '\n';
-	l.Outcont(f2);
-	l.Clear();
-	//Outcont(l, f2);
+	list.OutSphere(f2);
+	list.Clear();
 	return 0;
 }
 
