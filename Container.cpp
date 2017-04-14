@@ -70,6 +70,23 @@ void cont::OutSphere(ofstream &f)
 		l->sh->OutOnlySphere(f);
 		l = l->next;
 	}
+	/*
+	Add counter parameter to the OutOnlySphere function that is incremented only for the class Sphere
+	int counter = 0;
+	for (int i = 0; i < N; i++)
+	{
+		l->sh->OutOnlySphere(f);
+		l = l->next;
+	}
+	
+	Function Sphere::OutOnlySphere:
+	void Sphere::OutOnlySphere(int &counter, ofstream &f)
+	{
+		f << counter++ << ": ";
+		Out(f);
+		f << ", p = " << p << ", t = " << t << ", V = " << Volume() << endl;
+	}
+	*/
 }
 
 void cont::Clear()
@@ -113,7 +130,8 @@ void cont::Sort()
 	}
 
 	/*
-	cont* l = this, *temp = new cont;
+	//Possible solution:
+	cont* l = this;
 	for (int i = 0; i < N-1; i++)
 	{
 		for (int j = i+1; j < N; j++)
@@ -124,15 +142,12 @@ void cont::Sort()
 				//cout << ", V = " << l->next->sh->Volume() << endl;
 				//cout << "Changed\n";
 
-				temp->sh = l->sh;
-				l->sh = l->next->sh;
-				l->next->sh = temp->sh;
+				swap(l->sh,l->next->sh);
 			}
 				l = l->next;
 		}
 		l = this;
 	}
-	delete temp;
 	*/
 	//for (int i = 0; i < N-1; i++)
 	//{
