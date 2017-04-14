@@ -26,6 +26,21 @@ void cont::Incont(ifstream &f)
 		prev->next = temp;
 		prev = temp;
 	}
+	/*
+	Insignificant changes for optimization:
+	
+	cont* temp;
+	for (int i = 0; i < n-1; i++)
+	{
+		temp = new cont;
+		temp->sh = Shape::InShape(f);
+		temp->n = n-1-i;
+		temp->prev = prev;
+		prev->next = temp;
+		prev = temp;
+	}
+	temp->next = this;
+	*/
 }
 
 void cont::Outcont(ofstream &f)
@@ -64,6 +79,10 @@ void cont::Clear()
 	while (l != this) 
 	{
 		temp = l->next;
+		/*
+		Clear the memory allocated for shape
+		delete l->sh;
+		*/
 		delete l; 
 		l = temp;
     }
@@ -93,6 +112,28 @@ void cont::Sort()
 		l = this;
 	}
 
+	/*
+	cont* l = this, *temp = new cont;
+	for (int i = 0; i < N-1; i++)
+	{
+		for (int j = i+1; j < N; j++)
+		{
+			if(l->sh->Compare(l->next->sh))
+			{
+				//cout << ", V = " << l->sh->Volume() << endl;
+				//cout << ", V = " << l->next->sh->Volume() << endl;
+				//cout << "Changed\n";
+
+				temp->sh = l->sh;
+				l->sh = l->next->sh;
+				l->next->sh = temp->sh;
+			}
+				l = l->next;
+		}
+		l = this;
+	}
+	delete temp;
+	*/
 	//for (int i = 0; i < N-1; i++)
 	//{
 	//	for (int j = i+1; j < N; j++)
