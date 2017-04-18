@@ -11,6 +11,8 @@ public:
 	void In(ifstream &f);
 	void Out(ofstream &f);
 	float Volume();
+	int* GetP();
+	void SetP(int *param);
 	Box() {}
 };
 

@@ -5,11 +5,11 @@ using namespace std;
 
 class cont
 {
+public:
 	int n;
 	Shape* sh;
 	cont *next;
 	cont *prev;
-public:
 	void Incont(ifstream &f);
 	void Outcont(ofstream &f);
 	void OutSphere(ofstream &f);

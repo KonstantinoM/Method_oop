@@ -17,6 +17,8 @@ public:
 	virtual void OutOnlySphere(ofstream &f);
 	void OutShape(ofstream &f);
 	bool Compare(Shape *other);
+	virtual int* GetP() = 0;
+	virtual void SetP(int *param) = 0;
 };
 
 #endif

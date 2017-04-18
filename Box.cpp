@@ -20,3 +20,21 @@ float Box::Volume()
 {
 	return (a*b*c);
 }
+
+int* Box::GetP()
+{
+	int *param = new int[4];
+	param[0] = 3;
+	param[1] = a;
+	param[2] = b;
+	param[3] = c;
+	return param;
+}
+
+void Box::SetP(int* param)
+{
+	//param[0] = 3;
+	a = param[1];
+	b = param[2];
+	c = param[3];	
+}

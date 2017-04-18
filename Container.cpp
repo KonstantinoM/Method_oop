@@ -51,7 +51,7 @@ void cont::Outcont(ofstream &f)
 	l->Sort();
 	for (int i = 0; i < N; i++)
 	{
-		f << i+1 << ". ";
+		f << i+1 << ": ";
 		l->sh->OutShape(f);
 		f << ", V = " << l->sh->Volume() << endl;
 		l = l->next;
@@ -66,7 +66,7 @@ void cont::OutSphere(ofstream &f)
 	l->Sort();	
 	for (int i = 0; i < N; i++)
 	{
-		f << i+1 << ". ";
+		f << i+1 << ": ";
 		l->sh->OutOnlySphere(f);
 		l = l->next;
 	}
@@ -103,6 +103,8 @@ void cont::Clear()
 		delete l; 
 		l = temp;
     }
+	l->n = 0;
+	l->sh = NULL;
 }
 
 void cont::Sort() 
