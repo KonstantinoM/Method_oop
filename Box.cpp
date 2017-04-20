@@ -1,19 +1,28 @@
 #include "stdafx.h"
 #include "Box.h"
+#include "SecureCoding.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-void Box::In(ifstream &f)
+void Box::In(ifstream &file)
 {
-	f >> a;
-	f >> b;
-	f >> c;
+	CheckInputFile(file);
+	file >> a;
+	CheckInputValue(file);
+	CheckNonnegativeness(a);
+	file >> b;
+	CheckInputValue(file);
+	CheckNonnegativeness(b);
+	file >> c;
+	CheckInputValue(file);
+	CheckNonnegativeness(c);
 }
 
-void Box::Out(ofstream &f)
+void Box::Out(ofstream &file)
 {
-	f << "It's box: a = " << a << ", b = " << b << ", c = " << c; 
+	CheckOutputFile(file);
+	file << "It's box: a = " << a << ", b = " << b << ", c = " << c; 
 }
 
 float Box::Volume()

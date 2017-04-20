@@ -1,156 +1,112 @@
 #include "stdafx.h"
 #include "Container.h"
+#include "SecureCoding.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-cont::cont()
+Container::Container()
 {
-	sh = NULL;
+	shape = NULL;
 	n = 0;
 	next = this; 
 	prev = this;
 }
 
-void cont::Incont(ifstream &f)
+void Container::InContainer(ifstream &file)
 {
-	f >> n; 
-	sh = Shape::InShape(f);
+	CheckInputFile(file);
+	file >> n; 
+	CheckInputValue(file);
+	CheckNonnegativeness(n);
+	shape = Shape::InShape(file);
 	for (int i = 0; i < n-1; i++)
 	{
-		cont *temp = new cont;
-		temp->sh = Shape::InShape(f);
+		Container *temp = new Container;
+		temp->shape = Shape::InShape(file);
 		temp->n = n-1-i;
 		temp->next = this;
 		temp->prev = prev;
 		prev->next = temp;
 		prev = temp;
 	}
-	/*
-	Insignificant changes for optimization:
-	
-	cont* temp;
-	for (int i = 0; i < n-1; i++)
+	if(!file.eof())
 	{
-		temp = new cont;
-		temp->sh = Shape::InShape(f);
-		temp->n = n-1-i;
-		temp->prev = prev;
-		prev->next = temp;
-		prev = temp;
+		cout << "Error. There's some odd data" << endl;
+		system("pause");
+		exit(1);
 	}
-	temp->next = this;
-	*/
 }
 
-void cont::Outcont(ofstream &f)
+void Container::OutContainer(ofstream &file)
 {
+	CheckOutputFile(file);
 	int N = n;
-	f << "Total number = " << N <<  endl;
-	cont* l = this;
-	l->Sort();
+	file << "Total number = " << N <<  endl;
+	Container* container = this;
+	container->Sort();
 	for (int i = 0; i < N; i++)
 	{
-		f << i+1 << ": ";
-		l->sh->OutShape(f);
-		f << ", V = " << l->sh->Volume() << endl;
-		l = l->next;
+		file << i+1 << ": ";
+		container->shape->OutShape(file);
+		file << ", V = " << container->shape->Volume() << endl;
+		container = container->next;
 	}
 }
 
-void cont::OutSphere(ofstream &f)
+void Container::OutSphere(ofstream &file)
 {
+	CheckOutputFile(file);
 	int N = n;
-	f << "Only spheres:" <<  endl;
-	cont* l = this;
-	l->Sort();	
+	file << "Only spheres:" <<  endl;
+	Container* container = this;
+	container->Sort();	
 	for (int i = 0; i < N; i++)
 	{
-		f << i+1 << ": ";
-		l->sh->OutOnlySphere(f);
-		l = l->next;
+		file << i+1 << ": ";
+		container->shape->OutOnlySphere(file);
+		container = container->next;
 	}
-	/*
-	Add counter parameter to the OutOnlySphere function that is incremented only for the class Sphere
-	int counter = 0;
-	for (int i = 0; i < N; i++)
-	{
-		l->sh->OutOnlySphere(f);
-		l = l->next;
-	}
-	
-	Function Sphere::OutOnlySphere:
-	void Sphere::OutOnlySphere(int &counter, ofstream &f)
-	{
-		f << counter++ << ": ";
-		Out(f);
-		f << ", p = " << p << ", t = " << t << ", V = " << Volume() << endl;
-	}
-	*/
 }
 
-void cont::Clear()
+void Container::Clear()
 {
-	cont* l = this->next;
-	cont *temp;
-	while (l != this) 
+	Container* container = this->next;
+	Container *temp;
+	while (container != this) 
 	{
-		temp = l->next;
-		/*
-		Clear the memory allocated for shape
-		delete l->sh;
-		*/
-		delete l; 
-		l = temp;
+		temp = container->next;
+		delete container; 
+		container = temp;
     }
-	l->n = 0;
-	l->sh = NULL;
+	container->n = 0;
+	container->shape = NULL;
 }
 
-void cont::Sort() 
+void Container::Sort() 
 {
 	int N = n;
-	cont* l = this;
+	Container* container = this;
 	for (int i = 0; i < N-1; i++)
 	{
 		for (int j = i+1; j < N; j++)
 		{
-			if(l->sh->Compare(l->next->sh))
+			if(container->shape->Compare(container->next->shape))
 			{
 				//cout << ", V = " << l->sh->Volume() << endl;
 				//cout << ", V = " << l->next->sh->Volume() << endl;
 				//cout << "Changed\n";
 
-				cont *temp = new cont;
-				temp->sh = l->sh;
-				l->sh = l->next->sh;
-				l->next->sh = temp->sh;
+				Container *temp = new Container;
+				temp->shape = container->shape;
+				container->shape = container->next->shape;
+				container->next->shape = temp->shape;
 			}
-				l = l->next;
+				container = container->next;
 		}
-		l = this;
+		container = this;
 	}
 
-	/*
-	//Possible solution:
-	cont* l = this;
-	for (int i = 0; i < N-1; i++)
-	{
-		for (int j = i+1; j < N; j++)
-		{
-			if(l->sh->Compare(l->next->sh))
-			{
-				//cout << ", V = " << l->sh->Volume() << endl;
-				//cout << ", V = " << l->next->sh->Volume() << endl;
-				//cout << "Changed\n";
-
-				swap(l->sh,l->next->sh);
-			}
-				l = l->next;
-		}
-		l = this;
-	}
-	*/
 	//for (int i = 0; i < N-1; i++)
 	//{
 	//	for (int j = i+1; j < N; j++)
@@ -160,9 +116,9 @@ void cont::Sort()
 	//			//cout << ", V = " << l->sh->Volume() << endl;
 	//			//cout << ", V = " << l->next->sh->Volume() << endl;
 	//			//cout << "Changed\n";
-	//			cont *temp = l->next->next;
-	//			cont *prev = l->prev;
-	//			cont *next = l->next;
+	//			Container *temp = l->next->next;
+	//			Container *prev = l->prev;
+	//			Container *next = l->next;
 	//			l->prev->next = next;
 	//			l->next->prev = prev;
 	//			l->next->next->prev = l;

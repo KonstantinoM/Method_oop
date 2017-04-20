@@ -3,18 +3,18 @@
 #include <fstream>
 using namespace std;
 
-class cont
+class Container
 {
 public:
 	int n;
-	Shape* sh;
-	cont *next;
-	cont *prev;
-	void Incont(ifstream &f);
-	void Outcont(ofstream &f);
-	void OutSphere(ofstream &f);
+	Shape* shape;
+	Container *next;
+	Container *prev;
+	void InContainer(ifstream &file);
+	void OutContainer(ofstream &file);
+	void OutSphere(ofstream &file);
 	void Clear();
 	void Sort();
-	cont();    
-    ~cont() { delete sh; }
+	Container();    
+    ~Container() { delete shape; }
 };

@@ -8,8 +8,8 @@ class Tetrahedron:public Shape
 private:
 	int a;
 public:
-	void In(ifstream &f);
-	void Out(ofstream &f);
+	void In(ifstream &file);
+	void Out(ofstream &file);
 	float Volume();
 	int* GetP();
 	void SetP(int *param);

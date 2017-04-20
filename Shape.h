@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "SecureCoding.h"
 using namespace std;
 
 #ifndef __Shape__
@@ -8,15 +9,15 @@ using namespace std;
 class Shape
 {
 public:
-	float p;
-	int t;
-	static Shape* InShape(ifstream &f);
-	virtual void In(ifstream &f) = 0; 
-	virtual void Out(ofstream &f) = 0; 
+	float density;
+	int temperature;
+	static Shape* InShape(ifstream &file);
+	virtual void In(ifstream &file) = 0; 
+	virtual void Out(ofstream &file) = 0; 
 	virtual float Volume() = 0;
-	virtual void OutOnlySphere(ofstream &f);
-	void OutShape(ofstream &f);
-	bool Compare(Shape *other);
+	virtual void OutOnlySphere(ofstream &file);
+	void OutShape(ofstream &file);
+	bool Compare(Shape *shape);
 	virtual int* GetP() = 0;
 	virtual void SetP(int *param) = 0;
 };

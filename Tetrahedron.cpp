@@ -1,18 +1,23 @@
 #include "stdafx.h"
 #include "Tetrahedron.h"
+#include "SecureCoding.h"
 #include <iostream>
 #include "math.h"
 #include <fstream>
 using namespace std;
 
-void Tetrahedron::In(ifstream &f)
+void Tetrahedron::In(ifstream &file)
 {
-	f >> a;
+	CheckInputFile(file);
+	file >> a;
+	CheckInputValue(file);
+	CheckNonnegativeness(a);
 }
 
-void Tetrahedron::Out(ofstream &f)
+void Tetrahedron::Out(ofstream &file)
 {
-	f << "It's tetrahedron: a = " << a; 
+	CheckOutputFile(file);
+	file << "It's tetrahedron: a = " << a; 
 }
 
 float Tetrahedron::Volume()

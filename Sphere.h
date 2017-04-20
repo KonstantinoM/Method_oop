@@ -11,10 +11,10 @@ class Sphere:public Shape
 private:
 	int r;
 public:
-	void In(ifstream &f);
-	void Out(ofstream &f);
+	void In(ifstream &file);
+	void Out(ofstream &file);
 	float Volume();
-	void OutOnlySphere(ofstream &f);
+	void OutOnlySphere(ofstream &file);
 	int* GetP();
 	void SetP(int *param);
 	Sphere() {}

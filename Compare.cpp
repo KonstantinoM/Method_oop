@@ -2,7 +2,7 @@
 #include "Box.h"
 #include "Sphere.h"
 
-bool Shape::Compare(Shape *other)
+bool Shape::Compare(Shape *shape)
 {
-	return (Volume() > other->Volume());
+	return (Volume() > shape->Volume());
 }

@@ -1,31 +1,37 @@
 #include "stdafx.h"
 #include "Sphere.h"
+#include "SecureCoding.h"
 #include <iostream>
 #include <fstream>
 #include "math.h"
 using namespace std;
 
-#define M_PI 3.1415926535897932384626433832795
+#define PI 3.1415926535897932384626433832795
 
-void Sphere::In(ifstream &f)
+void Sphere::In(ifstream &file)
 {
-	f >> r;
+	CheckInputFile(file);
+	file >> r;
+	CheckInputValue(file);
+	CheckNonnegativeness(r);
 }
 
-void Sphere::Out(ofstream &f)
+void Sphere::Out(ofstream &file)
 {
-	f << "It's sphere: r = " << r; 
+	CheckOutputFile(file);
+	file << "It's sphere: r = " << r; 
 }
 
 float Sphere::Volume()
 {
-	return (float(4)/float(3)*M_PI*pow(r, 3.0));
+	return (float(4)/float(3)*PI*pow(r, 3.0));
 }
 
-void Sphere::OutOnlySphere(ofstream &f)
+void Sphere::OutOnlySphere(ofstream &file)
 {
-	Out(f);
-	f << ", p = " << p << ", t = " << t << ", V = " << Volume() << endl;
+	CheckOutputFile(file);
+	Out(file);
+	file << ", p = " << density << ", t = " << temperature << ", V = " << Volume() << endl;
 }
 
 int* Sphere::GetP()

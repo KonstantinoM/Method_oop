@@ -6,44 +6,65 @@
 #include <fstream>
 using namespace std;
 
-Shape* Shape::InShape(ifstream &f)
+Shape* Shape::InShape(ifstream &file)
 {
-	Shape *s;
+	CheckInputFile(file);
+	if(file.eof())
+	{
+		cout << "Error. Too many shapes is specified." << endl;
+		system("pause");
+		exit(1);
+	}
+	Shape *shape;
 	int key = 0;
-	f >> key;
+	file >> key;
+	CheckInputValue(file);
+	CheckNonnegativeness(key);
+	if (key > 2)
+	{
+		cout << "Error. Incorrect values. The key can take the values 0, 1, 2." << endl;
+		system("pause");
+		exit(1);
+	}
 	switch(key)
 	{
 		case 0: //Это сфера
 			{
-				s = new Sphere;
+				shape = new Sphere;
 				break;
 			}
 		case 1: //Это параллелепипед
 			{
-				s = new Box;
+				shape = new Box;
 				break;
 			}
 		case 2: //Это тетраэдр
 			{
-				s = new Tetrahedron;
+				shape = new Tetrahedron;
 				break;
 			}
 		default:
 			break;
 	}
-	s->In(f);
-	f >> s->p;
-	f >> s->t;
-	return s;
+	shape->In(file);
+	file >> shape->density;
+	CheckInputValue(file);
+	CheckNonnegativeness(shape->density);
+	file >> shape->temperature;
+	CheckInputValue(file);
+	CheckNonnegativeness(shape->temperature);
+	return shape;
 }
 
-void Shape::OutShape(ofstream &f)
+void Shape::OutShape(ofstream &file)
 {
-	Out(f);
-	f << ", p = " << p << ", t = " << t;
+	CheckOutputFile(file);
+	Out(file);
+	file << ", p = " << density << ", t = " << temperature;
 }
 
-void Shape::OutOnlySphere(ofstream &f)
+void Shape::OutOnlySphere(ofstream &file)
 {
-	f << endl; 
+	CheckOutputFile(file);
+	file << endl; 
 }
