@@ -8,28 +8,28 @@ using namespace std;
 
 TEST(SphereTest, SphereInput)
 {
-	ifstream f("SphereInput.txt");
+	ifstream file("SphereInput.txt");
 	Sphere *actual = new Sphere;
-	actual->In(f);
+	actual->In(file);
 	int *param;
 	EXPECT_TRUE(actual->GetP()[1] == 5);
 }
 
 TEST(SphereTest, SphereOutput)
 {
-	ofstream f("SphereOutput.txt");
+	ofstream file("SphereOutput.txt");
 	Sphere* sphere = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 4;
 	sphere->SetP(param);
-	sphere->Out(f);
-	f.close();
-	ifstream actual("SphereOutput.txt"), expected("SphereOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	sphere->Out(file);
+	file.close();
+	ifstream actualFile("SphereOutput.txt"), expectedFile("SphereOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(SphereTest, SphereVolume)
@@ -46,27 +46,27 @@ TEST(SphereTest, SphereVolume)
 
 TEST(SphereTest, OnlySphereOutput)
 {
-	ofstream f("OnlySphereOutput.txt");
+	ofstream file("OnlySphereOutput.txt");
 	Sphere* sphere = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 4;
 	sphere->SetP(param);
-	sphere->OutOnlySphere(f);
-	f.close();
-	ifstream actual("OnlySphereOutput.txt"), expected("OnlySphereOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	sphere->OutOnlySphere(file);
+	file.close();
+	ifstream actualFile("OnlySphereOutput.txt"), expectedFile("OnlySphereOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 
 TEST(BoxTest, BoxInput)
 {
-	ifstream f("BoxInput.txt");
+	ifstream file("BoxInput.txt");
 	Box *actual = new Box;
-	actual->In(f);
+	actual->In(file);
 	int *param;
 	EXPECT_TRUE(actual->GetP()[1] == 2);
 	EXPECT_TRUE(actual->GetP()[2] == 3);
@@ -76,7 +76,7 @@ TEST(BoxTest, BoxInput)
 
 TEST(BoxTest, BoxOutput)
 {
-	ofstream f("BoxOutput.txt");
+	ofstream file("BoxOutput.txt");
 	Box* box = new Box;
 	int *param = new int[4];
 	param[0] = 3;
@@ -84,13 +84,13 @@ TEST(BoxTest, BoxOutput)
 	param[2] = 5;
 	param[3] = 9;
 	box->SetP(param);
-	box->Out(f);
-	f.close();
-	ifstream actual("BoxOutput.txt"), expected("BoxOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	box->Out(file);
+	file.close();
+	ifstream actualFile("BoxOutput.txt"), expectedFile("BoxOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(BoxTest, BoxVolume)
@@ -109,28 +109,28 @@ TEST(BoxTest, BoxVolume)
 
 TEST(TetrahedronTest, TetrahedronInput)
 {
-	ifstream f("TetrahedronInput.txt");
+	ifstream file("TetrahedronInput.txt");
 	Tetrahedron *actual = new Tetrahedron;
-	actual->In(f);
+	actual->In(file);
 	int *param;
 	EXPECT_TRUE(actual->GetP()[1] == 14);
 }
 
 TEST(TetrahedronTest, TetrahedronOutput)
 {
-	ofstream f("TetrahedronOutput.txt");
+	ofstream file("TetrahedronOutput.txt");
 	Tetrahedron* tetrahedron = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 183;
 	tetrahedron->SetP(param);
-	tetrahedron->Out(f);
-	f.close();
-	ifstream actual("TetrahedronOutput.txt"), expected("TetrahedronOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	tetrahedron->Out(file);
+	file.close();
+	ifstream actualFile("TetrahedronOutput.txt"), expectedFile("TetrahedronOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(TetrahedronTest, TetrahedronVolume)
@@ -147,23 +147,23 @@ TEST(TetrahedronTest, TetrahedronVolume)
 
 TEST(InputShapeTest, InputSphereToShape)
 {
-	ifstream f("InputSphereToShape.txt");
+	ifstream file("InputSphereToShape.txt");
 	Shape *actual;
-	actual = actual->InShape(f);
+	actual = actual->InShape(file);
 	Shape *expected = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 2;
 	expected->SetP(param);
-	expected->p = 5;
-	expected->t = 65;
+	expected->density = 5;
+	expected->temperature = 65;
 	EXPECT_TRUE(CompareShapes(actual, expected));
 }
 
 TEST(InputShapeTest, InputBoxToShape)
 {
-	ifstream f("InputBoxToShape.txt");
-	Shape *actual = actual->InShape(f);
+	ifstream file("InputBoxToShape.txt");
+	Shape *actual = actual->InShape(file);
 	Shape *expected = new Box;
 	int *param = new int[4];
 	param[0] = 3;
@@ -171,47 +171,47 @@ TEST(InputShapeTest, InputBoxToShape)
 	param[2] = 3;
 	param[3] = 4;
 	expected->SetP(param);
-	expected->p = 67;
-	expected->t = 987;
+	expected->density = 67;
+	expected->temperature = 987;
 	EXPECT_TRUE(CompareShapes(actual, expected));
 }
 
 TEST(InputShapeTest, InputTetrahedronToShape)
 {
-	ifstream f("InputTetrahedronToShape.txt");
-	Shape *actual = actual->InShape(f);
+	ifstream file("InputTetrahedronToShape.txt");
+	Shape *actual = actual->InShape(file);
 	Shape *expected = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 25;
 	expected->SetP(param);
-	expected->p = 75;
-	expected->t = 698;
+	expected->density = 75;
+	expected->temperature = 698;
 	EXPECT_TRUE(CompareShapes(actual, expected));
 }
 
 TEST(OutputShapeTest, ShapeSphereOutput)
 {
-	ofstream f("ShapeSphereOutput.txt");
+	ofstream file("ShapeSphereOutput.txt");
 	Shape *shape = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 2;
 	shape->SetP(param);
-	shape->p = 5;
-	shape->t = 65;
-	shape->OutShape(f);
-	f.close();
-	ifstream actual("ShapeSphereOutput.txt"), expected("ShapeSphereOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	shape->density = 5;
+	shape->temperature = 65;
+	shape->OutShape(file);
+	file.close();
+	ifstream actualFile("ShapeSphereOutput.txt"), expectedFile("ShapeSphereOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputShapeTest, ShapeBoxOutput)
 {
-	ofstream f("ShapeBoxOutput.txt");
+	ofstream file("ShapeBoxOutput.txt");
 	Shape* shape = new Box;
 	int *param = new int[4];
 	param[0] = 3;
@@ -219,34 +219,34 @@ TEST(OutputShapeTest, ShapeBoxOutput)
 	param[2] = 3;
 	param[3] = 4;
 	shape->SetP(param);
-	shape->p = 5;
-	shape->t = 65;
-	shape->OutShape(f);
-	f.close();
-	ifstream actual("ShapeBoxOutput.txt"), expected("ShapeBoxOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	shape->density = 5;
+	shape->temperature = 65;
+	shape->OutShape(file);
+	file.close();
+	ifstream actualFile("ShapeBoxOutput.txt"), expectedFile("ShapeBoxOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputShapeTest, ShapeTetrahedronOutput)
 {
-	ofstream f("ShapeTetrahedronOutput.txt");
+	ofstream file("ShapeTetrahedronOutput.txt");
 	Shape *shape = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 25;
 	shape->SetP(param);
-	shape->p = 5;
-	shape->t = 65;
-	shape->OutShape(f);
-	f.close();
-	ifstream actual("ShapeTetrahedronOutput.txt"), expected("ShapeTetrahedronOutputPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	shape->density = 5;
+	shape->temperature = 65;
+	shape->OutShape(file);
+	file.close();
+	ifstream actualFile("ShapeTetrahedronOutput.txt"), expectedFile("ShapeTetrahedronOutputPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(ShapeVolumeTest, ShapeSphereVolume)
@@ -336,8 +336,8 @@ TEST(ShapeCompareVolumeTest, CompareVolumeEqual)
 
 TEST(InitContainerTest, InitContainer)
 {
-	cont list;
-	EXPECT_TRUE(list.sh == NULL);
+	Container list;
+	EXPECT_TRUE(list.shape == NULL);
 	EXPECT_EQ(list.n, 0);
 	EXPECT_TRUE(list.next == &list);
 	EXPECT_TRUE(list.prev == &list);
@@ -345,9 +345,9 @@ TEST(InitContainerTest, InitContainer)
 
 TEST(ClearContainerTest, ClearEmptyContainer)
 {
-	cont list;
+	Container list;
 	list.Clear();
-	EXPECT_TRUE(list.sh == NULL);
+	EXPECT_TRUE(list.shape == NULL);
 	EXPECT_EQ(list.n, 0);
 	EXPECT_TRUE(list.next == &list);
 	EXPECT_TRUE(list.prev == &list);
@@ -355,13 +355,13 @@ TEST(ClearContainerTest, ClearEmptyContainer)
 
 TEST(ClearContainerTest, ClearNonEmptyContainer)
 {
-	cont *list = new cont;
-	list->sh = new Sphere;
+	Container *list = new Container;
+	list->shape = new Sphere;
 	list->n = 1;
 	list->next = list; 
 	list->prev = list;
 	list->Clear();
-	EXPECT_TRUE(list->sh == NULL);
+	EXPECT_TRUE(list->shape == NULL);
 	EXPECT_EQ(list->n, 0);
 	EXPECT_TRUE(list->next == list);
 	EXPECT_TRUE(list->prev == list);
@@ -369,209 +369,210 @@ TEST(ClearContainerTest, ClearNonEmptyContainer)
 
 TEST(InputContainerTest, OneSphereInContainer)
 {
-	ifstream f("OneSphereInContainer.txt");
-	cont *actual = new cont;
-	actual->Incont(f);
+	ifstream file("OneSphereInContainer.txt");
+	Container *actual = new Container;
+	actual->InContainer(file);
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneSphereInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(InputContainerTest, OneBoxInContainer)
 {
-	ifstream f("OneBoxInContainer.txt");
-	cont *actual = new cont;
-	actual->Incont(f);
+	ifstream file("OneBoxInContainer.txt");
+	Container *actual = new Container;
+	actual->InContainer(file);
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneBoxInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(InputContainerTest, OneTetrahedronInContainer)
 {
-	ifstream f("OneTetrahedronInContainer.txt");
-	cont *actual = new cont;
-	actual->Incont(f);
+	ifstream file("OneTetrahedronInContainer.txt");
+	Container *actual = new Container;
+	actual->InContainer(file);
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneTetrahedronInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
-TEST(InputContainerTest, NoElementsInContainer)
-{
-	ifstream f("NoElementsInContainer.txt");
-	cont *actual = new cont;
-	actual->Incont(f);
-	cont *expected = new cont;
-	EXPECT_TRUE(CompareContainer(actual, expected));
-}
+//There is no nesessity to run this test because of secure coding.
+//TEST(InputContainerTest, NoElementsInContainer)
+//{
+//	ifstream file("NoElementsInContainer.txt");
+//	Container *actual = new Container;
+//	actual->InContainer(file);
+//	Container *expected = new Container;
+//	EXPECT_TRUE(CompareContainer(actual, expected));
+//}
 
 TEST(InputContainerTest, SeveralElementsInContainer)
 {
-	ifstream f("SeveralElementsInContainer.txt");
-	cont *actual = new cont;
-	actual->Incont(f);
+	ifstream file("SeveralElementsInContainer.txt");
+	Container *actual = new Container;
+	actual->InContainer(file);
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	ContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(OutputContainerTest, SeveralElementsOutContainer)
 {
-	ofstream f("SeveralElementOutContainer.txt");
-	cont *list = NULL;
+	ofstream file("SeveralElementOutContainer.txt");
+	Container *list = NULL;
 	ContainerPattern(list);
-	list->Outcont(f);
-	f.close();
+	list->OutContainer(file);
+	file.close();
 
-	ifstream actual("SeveralElementOutContainer.txt"), expected("SeveralElementOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("SeveralElementOutContainer.txt"), expectedFile("SeveralElementOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, OneSphereOutContainer)
 {
-	ofstream f("OneSphereOutContainer.txt");
-	cont *list = NULL;
+	ofstream file("OneSphereOutContainer.txt");
+	Container *list = NULL;
 	OneSphereInContainerPattern(list);
-	list->Outcont(f);
-	f.close();
+	list->OutContainer(file);
+	file.close();
 
-	ifstream actual("OneSphereOutContainer.txt"), expected("OneSphereOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("OneSphereOutContainer.txt"), expectedFile("OneSphereOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, OneBoxOutContainer)
 {
-	ofstream f("OneBoxOutContainer.txt");
-	cont *list = NULL;
+	ofstream file("OneBoxOutContainer.txt");
+	Container *list = NULL;
 	OneBoxInContainerPattern(list);
-	list->Outcont(f);
-	f.close();
+	list->OutContainer(file);
+	file.close();
 
-	ifstream actual("OneBoxOutContainer.txt"), expected("OneBoxOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("OneBoxOutContainer.txt"), expectedFile("OneBoxOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, OneTetrahedronOutContainer)
 {
-	ofstream f("OneTetrahedronOutContainer.txt");
-	cont *list =  NULL;
+	ofstream file("OneTetrahedronOutContainer.txt");
+	Container *list =  NULL;
 	OneTetrahedronInContainerPattern(list);
-	list->Outcont(f);
-	f.close();
+	list->OutContainer(file);
+	file.close();
 
-	ifstream actual("OneTetrahedronOutContainer.txt"), expected("OneTetrahedronOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("OneTetrahedronOutContainer.txt"), expectedFile("OneTetrahedronOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, NoElementsOutContainer)
 {
-	ofstream f("NoElementsOutContainer.txt");
-	cont list;
-	list.Outcont(f);
-	f.close();
+	ofstream file("NoElementsOutContainer.txt");
+	Container list;
+	list.OutContainer(file);
+	file.close();
 
-	ifstream actual("NoElementsOutContainer.txt"), expected("NoElementsOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("NoElementsOutContainer.txt"), expectedFile("NoElementsOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, OnlySeveralSpheresOutContainer)
 {
-	ofstream f("OnlySeveralSpheresOutContainer.txt");
-	cont *list = NULL;
+	ofstream file("OnlySeveralSpheresOutContainer.txt");
+	Container *list = NULL;
 	ContainerPattern(list);
-	list->OutSphere(f);
-	f.close();
+	list->OutSphere(file);
+	file.close();
 
-	ifstream actual("OnlySeveralSpheresOutContainer.txt"), expected("OnlySeveralSpheresOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("OnlySeveralSpheresOutContainer.txt"), expectedFile("OnlySeveralSpheresOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest, OnlySingleSphereOutContainer)
 {
-	ofstream f("OnlySingleSpheresOutContainer.txt");
-	cont *list = NULL;
+	ofstream file("OnlySingleSpheresOutContainer.txt");
+	Container *list = NULL;
 	OneSphereInContainerPattern(list);
-	list->OutSphere(f);
-	f.close();
+	list->OutSphere(file);
+	file.close();
 
-	ifstream actual("OnlySingleSpheresOutContainer.txt"), expected("OnlySingleSpheresOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("OnlySingleSpheresOutContainer.txt"), expectedFile("OnlySingleSpheresOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(OutputContainerTest,NoSpheresOutContainer)
 {
-	ofstream f("NoSpheresOutContainer.txt");
-	cont list;
-	list.OutSphere(f);
-	f.close();
+	ofstream file("NoSpheresOutContainer.txt");
+	Container list;
+	list.OutSphere(file);
+	file.close();
 
-	ifstream actual("NoSpheresOutContainer.txt"), expected("NoSpheresOutContainerPattern.txt");
-	ASSERT_FALSE(!actual);
-	EXPECT_TRUE(CompareFiles(actual, expected));
-	actual.close();
-	expected.close();
+	ifstream actualFile("NoSpheresOutContainer.txt"), expectedFile("NoSpheresOutContainerPattern.txt");
+	ASSERT_FALSE(!actualFile);
+	EXPECT_TRUE(CompareFiles(actualFile, expectedFile));
+	actualFile.close();
+	expectedFile.close();
 }
 
 TEST(SortContainerTest, JustSortContainer)
 {
-	cont *actual = NULL;
+	Container *actual = NULL;
 	ContainerPattern(actual);
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	SortContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, ReversedSortContainer)
 {
-	cont *actual = new cont;
+	Container *actual = new Container;
 	actual->n = 6;
-	actual->sh = new Sphere;
+	actual->shape = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 67;
-	actual->sh->SetP(param);
-	actual->sh->p = 87;
-	actual->sh->t = 343;
+	actual->shape->SetP(param);
+	actual->shape->density = 87;
+	actual->shape->temperature = 343;
 	actual->next = actual; 
 	actual->prev = actual;
 	delete param;
 
-	cont *temp = new cont;
-	temp->sh = new Sphere;
+	Container *temp = new Container;
+	temp->shape = new Sphere;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 985;
-	temp->sh->t = 157;
+	temp->shape->SetP(param);
+	temp->shape->density = 985;
+	temp->shape->temperature = 157;
 	temp->n = 5;
 	temp->next = actual; 
 	temp->prev = actual->prev;
@@ -579,16 +580,16 @@ TEST(SortContainerTest, ReversedSortContainer)
 	actual->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 4;
 	param[2] = 12;
 	param[3] = 11;
-	temp->sh->SetP(param);
-	temp->sh->p = 123;
-	temp->sh->t = 167;
+	temp->shape->SetP(param);
+	temp->shape->density = 123;
+	temp->shape->temperature = 167;
 	temp->n = 4;
 	temp->next = actual; 
 	temp->prev = actual->prev;
@@ -596,16 +597,16 @@ TEST(SortContainerTest, ReversedSortContainer)
 	actual->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 10;
 	param[2] = 8;
 	param[3] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 87;
-	temp->sh->t = 343;
+	temp->shape->SetP(param);
+	temp->shape->density = 87;
+	temp->shape->temperature = 343;
 	temp->n = 3;
 	temp->next = actual; 
 	temp->prev = actual->prev;
@@ -613,14 +614,14 @@ TEST(SortContainerTest, ReversedSortContainer)
 	actual->prev = temp;
 	delete param;
 
-	temp = new cont;	
-	temp->sh = new Tetrahedron;
+	temp = new Container;	
+	temp->shape = new Tetrahedron;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 9;
-	temp->sh->SetP(param);
-	temp->sh->p = 98;
-	temp->sh->t = 354;
+	temp->shape->SetP(param);
+	temp->shape->density = 98;
+	temp->shape->temperature = 354;
 	temp->n = 2;
 	temp->next = actual; 
 	temp->prev = actual->prev;
@@ -628,14 +629,14 @@ TEST(SortContainerTest, ReversedSortContainer)
 	actual->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Tetrahedron;
+	temp = new Container;
+	temp->shape = new Tetrahedron;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 3;
-	temp->sh->SetP(param);
-	temp->sh->p = 5;
-	temp->sh->t = 34;
+	temp->shape->SetP(param);
+	temp->shape->density = 5;
+	temp->shape->temperature = 34;
 	temp->n = 1;
 	temp->next = actual; 
 	temp->prev = actual->prev;
@@ -644,61 +645,61 @@ TEST(SortContainerTest, ReversedSortContainer)
 	delete param;
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	SortContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, SortedSortContainer)
 {
-	cont *actual = NULL;
+	Container *actual = NULL;
 	SortContainerPattern(actual);
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	SortContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, OneSphereInContainer)
 {
-	cont *actual = NULL;
+	Container *actual = NULL;
 	OneSphereInContainerPattern(actual);
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneSphereInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, OneBoxInContainer)
 {
-	cont *actual = NULL;
+	Container *actual = NULL;
 	OneBoxInContainerPattern(actual);
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneBoxInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, OneTetrahedronInContainer)
 {
-	cont *actual = NULL;
+	Container *actual = NULL;
 	OneTetrahedronInContainerPattern(actual);
 	actual->Sort();
 
-	cont *expected = NULL;
+	Container *expected = NULL;
 	OneTetrahedronInContainerPattern(expected);
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 
 TEST(SortContainerTest, NothingInContainer)
 {
-	cont *actual = new cont;
+	Container *actual = new Container;
 	actual->Sort();
 
-	cont *expected = new cont;
+	Container *expected = new Container;
 	EXPECT_TRUE(CompareContainer(actual, expected));
 }
 

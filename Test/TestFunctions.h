@@ -9,12 +9,12 @@
 #include "..\Met3o\Tetrahedron.h"
 using namespace std;
 
-bool CompareFiles(ifstream &f1, ifstream &f2);
-bool CompareShapes(Shape *s1, Shape *s2);
-bool ComparePointerInContainer(cont *list1, cont *list2);
-bool CompareContainer(cont *list1, cont *list2);
-void OneSphereInContainerPattern(cont *&list);
-void OneBoxInContainerPattern(cont *&list);
-void OneTetrahedronInContainerPattern(cont *&list);
-void ContainerPattern(cont *&list);
-void SortContainerPattern(cont *&list);
+bool CompareFiles(ifstream &file1, ifstream &file2);
+bool CompareShapes(Shape *shape1, Shape *shape);
+bool ComparePointerInContainer(Container *list1, Container *list2);
+bool CompareContainer(Container *list1, Container *list2);
+void OneSphereInContainerPattern(Container *&list);
+void OneBoxInContainerPattern(Container *&list);
+void OneTetrahedronInContainerPattern(Container *&list);
+void ContainerPattern(Container *&list);
+void SortContainerPattern(Container *&list);

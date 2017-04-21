@@ -5,15 +5,15 @@
 #include "TestFunctions.h"
 using namespace std;
 
-bool CompareFiles(ifstream &f1, ifstream &f2)
+bool CompareFiles(ifstream &file1, ifstream &file2)
 {
 	string s1;
 	string s2;
 	int i = 0;
-	while ((!f1.eof())||(!f2.eof())) 
+	while ((!file1.eof())||(!file2.eof())) 
 	{ 
-		getline(f1, s1); 
-		getline(f2, s2); 
+		getline(file1, s1); 
+		getline(file2, s2); 
 		if (s1 != s2)
 		{
 			cout << "String " << i+1 << "\n" << s1 << "\n" << s2 << "\n";
@@ -24,30 +24,30 @@ bool CompareFiles(ifstream &f1, ifstream &f2)
 	return true;
 }
 
-bool CompareShapes(Shape *s1, Shape *s2)
+bool CompareShapes(Shape *shape1, Shape *shape2)
 {
-	int *param1 = s1->GetP();
-	int *param2 = s2->GetP();
+	int *param1 = shape1->GetP();
+	int *param2 = shape2->GetP();
 	for (int i = 0; i <= param1[0]; i++)
 		if (param1[i] != param2[i])
 			return false;
-	if (s1->p != s2->p)
+	if (shape1->density != shape2->density)
 		return false;
-	if (s1->t != s2->t)
+	if (shape1->temperature != shape2->temperature)
 		return false;
 	return true;
 }
 
-bool ComparePointerInContainer(cont *list1, cont *list2)
+bool ComparePointerInContainer(Container *list1, Container *list2)
 {
 	if ((list1 == NULL)^(list2 == NULL))
 		return false;
-	if (!CompareShapes(list1->sh, list2->sh))
+	if (!CompareShapes(list1->shape, list2->shape))
 		return false;
 	return true;
 }
 
-bool CompareContainer(cont *list1, cont *list2)
+bool CompareContainer(Container *list1, Container *list2)
 {
 	if (list1->n != list2->n)
 		return false;
@@ -65,76 +65,76 @@ bool CompareContainer(cont *list1, cont *list2)
 	return true;
 }
 
-void OneSphereInContainerPattern(cont *&list)
+void OneSphereInContainerPattern(Container *&list)
 {
-	list = new cont;
+	list = new Container;
 	list->n = 1;
-	list->sh = new Sphere;
+	list->shape = new Sphere;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 9;
-	list->sh->SetP(param);
-	list->sh->p = 98;
-	list->sh->t = 354;
+	list->shape->SetP(param);
+	list->shape->density = 98;
+	list->shape->temperature = 354;
 	list->next = list; 
 	list->prev = list;
 }
 
-void OneBoxInContainerPattern(cont *&list)
+void OneBoxInContainerPattern(Container *&list)
 {
-	list = new cont;
+	list = new Container;
 	list->n = 1;
-	list->sh = new Box;
+	list->shape = new Box;
 	int *param = new int[4];
 	param[0] = 3;
 	param[1] = 9;
 	param[2] = 13;
 	param[3] = 34;
-	list->sh->SetP(param);
-	list->sh->p = 58;
-	list->sh->t = 134;
+	list->shape->SetP(param);
+	list->shape->density = 58;
+	list->shape->temperature = 134;
 	list->next = list; 
 	list->prev = list;
 }
 
-void OneTetrahedronInContainerPattern(cont *&list)
+void OneTetrahedronInContainerPattern(Container *&list)
 {
-	list = new cont;
+	list = new Container;
 	list->n = 1;
-	list->sh = new Tetrahedron;
+	list->shape = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 9;
-	list->sh->SetP(param);
-	list->sh->p = 58;
-	list->sh->t = 134;
+	list->shape->SetP(param);
+	list->shape->density = 58;
+	list->shape->temperature = 134;
 	list->next = list; 
 	list->prev = list;
 }
 
-void ContainerPattern(cont *&list)
+void ContainerPattern(Container *&list)
 {
-	list = new cont;
+	list = new Container;
 	list->n = 6;
-	list->sh = new Tetrahedron;
+	list->shape = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 9;
-	list->sh->SetP(param);
-	list->sh->p = 98;
-	list->sh->t = 354;
+	list->shape->SetP(param);
+	list->shape->density = 98;
+	list->shape->temperature = 354;
 	list->next = list; 
 	list->prev = list;
 	delete param;
 
-	cont *temp = new cont;
-	temp->sh = new Sphere;
+	Container *temp = new Container;
+	temp->shape = new Sphere;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 67;
-	temp->sh->SetP(param);
-	temp->sh->p = 87;
-	temp->sh->t = 343;
+	temp->shape->SetP(param);
+	temp->shape->density = 87;
+	temp->shape->temperature = 343;
 	temp->n = 5;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -142,14 +142,14 @@ void ContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Tetrahedron;
+	temp = new Container;
+	temp->shape = new Tetrahedron;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 3;
-	temp->sh->SetP(param);
-	temp->sh->p = 5;
-	temp->sh->t = 34;
+	temp->shape->SetP(param);
+	temp->shape->density = 5;
+	temp->shape->temperature = 34;
 	temp->n = 4;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -157,16 +157,16 @@ void ContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 10;
 	param[2] = 8;
 	param[3] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 87;
-	temp->sh->t = 343;
+	temp->shape->SetP(param);
+	temp->shape->density = 87;
+	temp->shape->temperature = 343;
 	temp->n = 3;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -174,16 +174,16 @@ void ContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 4;
 	param[2] = 12;
 	param[3] = 11;
-	temp->sh->SetP(param);
-	temp->sh->p = 123;
-	temp->sh->t = 167;
+	temp->shape->SetP(param);
+	temp->shape->density = 123;
+	temp->shape->temperature = 167;
 	temp->n = 2;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -191,14 +191,14 @@ void ContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Sphere;
+	temp = new Container;
+	temp->shape = new Sphere;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 985;
-	temp->sh->t = 157;
+	temp->shape->SetP(param);
+	temp->shape->density = 985;
+	temp->shape->temperature = 157;
 	temp->n = 1;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -207,29 +207,29 @@ void ContainerPattern(cont *&list)
 	delete param;
 }
 
-void SortContainerPattern(cont *&list)
+void SortContainerPattern(Container *&list)
 {
-	list = new cont;
+	list = new Container;
 	list->n = 6;
-	list->sh = new Tetrahedron;
+	list->shape = new Tetrahedron;
 	int *param = new int[2];
 	param[0] = 1;
 	param[1] = 3;
-	list->sh->SetP(param);
-	list->sh->p = 5;
-	list->sh->t = 34;
+	list->shape->SetP(param);
+	list->shape->density = 5;
+	list->shape->temperature = 34;
 	list->next = list; 
 	list->prev = list;
 	delete param;
 
-	cont *temp = new cont;	
-	temp->sh = new Tetrahedron;
+	Container *temp = new Container;	
+	temp->shape = new Tetrahedron;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 9;
-	temp->sh->SetP(param);
-	temp->sh->p = 98;
-	temp->sh->t = 354;
+	temp->shape->SetP(param);
+	temp->shape->density = 98;
+	temp->shape->temperature = 354;
 	temp->n = 5;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -237,16 +237,16 @@ void SortContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 10;
 	param[2] = 8;
 	param[3] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 87;
-	temp->sh->t = 343;
+	temp->shape->SetP(param);
+	temp->shape->density = 87;
+	temp->shape->temperature = 343;
 	temp->n = 4;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -254,16 +254,16 @@ void SortContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Box;
+	temp = new Container;
+	temp->shape = new Box;
 	param = new int[4];
 	param[0] = 3;
 	param[1] = 4;
 	param[2] = 12;
 	param[3] = 11;
-	temp->sh->SetP(param);
-	temp->sh->p = 123;
-	temp->sh->t = 167;
+	temp->shape->SetP(param);
+	temp->shape->density = 123;
+	temp->shape->temperature = 167;
 	temp->n = 3;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -271,14 +271,14 @@ void SortContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Sphere;
+	temp = new Container;
+	temp->shape = new Sphere;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 6;
-	temp->sh->SetP(param);
-	temp->sh->p = 985;
-	temp->sh->t = 157;
+	temp->shape->SetP(param);
+	temp->shape->density = 985;
+	temp->shape->temperature = 157;
 	temp->n = 2;
 	temp->next = list; 
 	temp->prev = list->prev;
@@ -286,14 +286,14 @@ void SortContainerPattern(cont *&list)
 	list->prev = temp;
 	delete param;
 
-	temp = new cont;
-	temp->sh = new Sphere;
+	temp = new Container;
+	temp->shape = new Sphere;
 	param = new int[2];
 	param[0] = 1;
 	param[1] = 67;
-	temp->sh->SetP(param);
-	temp->sh->p = 87;
-	temp->sh->t = 343;
+	temp->shape->SetP(param);
+	temp->shape->density = 87;
+	temp->shape->temperature = 343;
 	temp->n = 1;
 	temp->next = list; 
 	temp->prev = list->prev;
