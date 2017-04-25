@@ -13,6 +13,7 @@ public:
 	void InContainer(ifstream &file);
 	void OutContainer(ofstream &file);
 	void OutSphere(ofstream &file);
+	void MultiMethod(ofstream &file);
 	void Clear();
 	void Sort();
 	Container();    

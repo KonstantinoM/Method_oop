@@ -47,3 +47,23 @@ void Sphere::SetP(int* param)
 	//param[0] = 1;
 	r = param[1];
 }
+
+void Sphere::MultiMethod(Shape *other, ofstream &file)
+{
+	other->MultiMethodCaseSphere(file);
+}
+
+void Sphere::MultiMethodCaseSphere(ofstream &file)
+{
+	file << "Sphere and Sphere" << endl;
+}
+
+void Sphere::MultiMethodCaseBox(ofstream &file)
+{
+	file << "Box and Sphere" << endl;
+}
+
+void Sphere::MultiMethodCaseTetrahedron(ofstream &file)
+{
+	file << "Tetrahedron and Sphere" << endl;
+}

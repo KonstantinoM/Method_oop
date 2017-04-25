@@ -47,3 +47,23 @@ void Box::SetP(int* param)
 	b = param[2];
 	c = param[3];	
 }
+
+void Box::MultiMethod(Shape *other, ofstream &file)
+{
+	other->MultiMethodCaseBox(file);
+}
+
+void Box::MultiMethodCaseSphere(ofstream &file)
+{
+	file << "Sphere and Box" << endl;
+}
+
+void Box::MultiMethodCaseBox(ofstream &file)
+{
+	file << "Box and Box" << endl;
+}
+
+void Box::MultiMethodCaseTetrahedron(ofstream &file)
+{
+	file << "Tetrahedron and Box" << endl;
+}

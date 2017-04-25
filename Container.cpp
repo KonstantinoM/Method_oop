@@ -133,3 +133,24 @@ void Container::Sort()
 	//		l = l->next;
 	//}
 }
+
+void Container::MultiMethod(ofstream &file)
+{
+	file << "Multimethod:" << endl;
+	Container *temp1 = this;
+	Container *temp2 = this;
+	while(temp1->next != this)
+	{
+		temp2 = temp1->next;
+		while (temp2 != this) 
+		{
+			temp1->shape->MultiMethod(temp2->shape, file);
+			temp1->shape->OutShape(file);
+			file << ", V = " << temp1->shape->Volume() << endl;
+			temp2->shape->OutShape(file);
+			file << ", V = " << temp2->shape->Volume() << endl << endl;
+			temp2 = temp2->next;
+		}
+		temp1 = temp1->next;
+	}
+}

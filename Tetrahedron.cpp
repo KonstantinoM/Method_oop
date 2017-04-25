@@ -38,3 +38,23 @@ void Tetrahedron::SetP(int* param)
 	//param[0] = 1;
 	a = param[1];
 }
+
+void Tetrahedron::MultiMethod(Shape *other, ofstream &file)
+{
+	other->MultiMethodCaseTetrahedron(file);
+}
+
+void Tetrahedron::MultiMethodCaseSphere(ofstream &file)
+{
+	file << "Sphere and Tetrahedron" << endl;
+}
+
+void Tetrahedron::MultiMethodCaseBox(ofstream &file)
+{
+	file << "Box and Tetrahedron" << endl;
+}
+
+void Tetrahedron::MultiMethodCaseTetrahedron(ofstream &file)
+{
+	file << "Tetrahedron and Tetrahedron" << endl;
+}

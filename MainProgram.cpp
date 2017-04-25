@@ -33,8 +33,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	ofstream outputFile(argv[2]);
 	CheckOutputFile(outputFile);
 	container.OutContainer(outputFile);
-	outputFile << '\n';
+	outputFile << endl;
 	container.OutSphere(outputFile);
+	outputFile << endl;
+	container.MultiMethod(outputFile);
 	container.Clear();
 	return 0;
 }

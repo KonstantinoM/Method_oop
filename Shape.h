@@ -20,6 +20,10 @@ public:
 	bool Compare(Shape *shape);
 	virtual int* GetP() = 0;
 	virtual void SetP(int *param) = 0;
+	virtual void MultiMethod(Shape *other, ofstream &f) = 0;
+	virtual void MultiMethodCaseSphere(ofstream &f) = 0;
+	virtual void MultiMethodCaseBox(ofstream &f) = 0;
+	virtual void MultiMethodCaseTetrahedron(ofstream &f) = 0;
 };
 
 #endif
