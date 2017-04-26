@@ -16,6 +16,10 @@ public:
 	virtual void In(ifstream &f) = 0; 
     virtual void Out(ofstream &f) = 0;    
 	void OutShape(ofstream &f);
+	virtual void MultiMethod(Shape *other, ofstream &f) = 0;
+	virtual void MultiMethodCaseSphere(ofstream &f) = 0;
+	virtual void MultiMethodCaseBox(ofstream &f) = 0;
+
 };
 
 #endif

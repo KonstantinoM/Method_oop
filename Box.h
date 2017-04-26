@@ -11,6 +11,9 @@ private:
 public:
 	void In(ifstream &f);
 	void Out(ofstream &f);
+	void MultiMethod(Shape *other, ofstream &f);
+	void MultiMethodCaseSphere(ofstream &f);
+	void MultiMethodCaseBox(ofstream &f);
 	Box() {}
 };
 

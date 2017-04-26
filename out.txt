@@ -6,3 +6,89 @@ It's box: a = 2, b = 3, c = 5, p = 9.515
 It's box: a = 5, b = 6, c = 5, p = 8
 It's sphere: r = 5, p = 8
 It's box: a = 5, b = 7, c = 2, p = 1
+
+Multimethod:
+Sphere and Box
+It's sphere: r = 5, p = 6
+It's box: a = 2, b = 3, c = 4, p = 5
+
+Sphere and Sphere
+It's sphere: r = 5, p = 6
+It's sphere: r = 1, p = 9
+
+Sphere and Box
+It's sphere: r = 5, p = 6
+It's box: a = 2, b = 3, c = 5, p = 9.515
+
+Sphere and Box
+It's sphere: r = 5, p = 6
+It's box: a = 5, b = 6, c = 5, p = 8
+
+Sphere and Sphere
+It's sphere: r = 5, p = 6
+It's sphere: r = 5, p = 8
+
+Sphere and Box
+It's sphere: r = 5, p = 6
+It's box: a = 5, b = 7, c = 2, p = 1
+
+Box and Sphere
+It's box: a = 2, b = 3, c = 4, p = 5
+It's sphere: r = 1, p = 9
+
+Box and Box
+It's box: a = 2, b = 3, c = 4, p = 5
+It's box: a = 2, b = 3, c = 5, p = 9.515
+
+Box and Box
+It's box: a = 2, b = 3, c = 4, p = 5
+It's box: a = 5, b = 6, c = 5, p = 8
+
+Box and Sphere
+It's box: a = 2, b = 3, c = 4, p = 5
+It's sphere: r = 5, p = 8
+
+Box and Box
+It's box: a = 2, b = 3, c = 4, p = 5
+It's box: a = 5, b = 7, c = 2, p = 1
+
+Sphere and Box
+It's sphere: r = 1, p = 9
+It's box: a = 2, b = 3, c = 5, p = 9.515
+
+Sphere and Box
+It's sphere: r = 1, p = 9
+It's box: a = 5, b = 6, c = 5, p = 8
+
+Sphere and Sphere
+It's sphere: r = 1, p = 9
+It's sphere: r = 5, p = 8
+
+Sphere and Box
+It's sphere: r = 1, p = 9
+It's box: a = 5, b = 7, c = 2, p = 1
+
+Box and Box
+It's box: a = 2, b = 3, c = 5, p = 9.515
+It's box: a = 5, b = 6, c = 5, p = 8
+
+Box and Sphere
+It's box: a = 2, b = 3, c = 5, p = 9.515
+It's sphere: r = 5, p = 8
+
+Box and Box
+It's box: a = 2, b = 3, c = 5, p = 9.515
+It's box: a = 5, b = 7, c = 2, p = 1
+
+Box and Sphere
+It's box: a = 5, b = 6, c = 5, p = 8
+It's sphere: r = 5, p = 8
+
+Box and Box
+It's box: a = 5, b = 6, c = 5, p = 8
+It's box: a = 5, b = 7, c = 2, p = 1
+
+Sphere and Box
+It's sphere: r = 5, p = 8
+It's box: a = 5, b = 7, c = 2, p = 1
+

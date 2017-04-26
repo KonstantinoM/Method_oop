@@ -51,3 +51,23 @@ void cont::Clear()
 		l = temp;
     }
 }
+
+void cont::MultiMethod(ofstream &f)
+{
+	f << endl << "Multimethod:" << endl;
+	cont *temp1 = this;
+	cont *temp2 = this;
+	while(temp1->next != this)
+	{
+		temp2 = temp1->next;
+		while (temp2 != this) 
+		{
+			temp1->sh->MultiMethod(temp2->sh, f);
+			temp1->sh->OutShape(f);
+			temp2->sh->OutShape(f);
+			f << endl;
+			temp2 = temp2->next;
+		}
+		temp1 = temp1->next;
+	}
+}

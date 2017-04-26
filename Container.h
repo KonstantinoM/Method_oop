@@ -13,6 +13,7 @@ public:
 	void Incont(ifstream &f);
 	void Outcont(ofstream &f);
 	void Clear();
+	void MultiMethod(ofstream &f);
 	cont();    
     ~cont() { delete sh; }
 };
